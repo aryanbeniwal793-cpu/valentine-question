@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Will You Be My Valentine? 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .type {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #fff;
+      width: 0;
+      animation: typing 3s steps(40, end) forwards, blink 0.7s infinite;
+      margin: auto;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    #yesBtn {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+    * { box-sizing: border-box; font-family: 'Segoe UI', cursive; }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(rgba(255, 0, 80, 0.4), rgba(255, 0, 120, 0.4)),
+                  url('https://images.unsplash.com/photo-1517841905240-472988babdf9');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 40px 50px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background: #ff2f68;
+      color: white;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 10px;
+    }
+
+    #yesBtn:hover {
+      background: #ff4f85;
+      transform: translateX(-50%) scale(1.05);
+    }
+
+    #noBtn {
+      background: white;
+      color: #ff2f68;
+      right: 20px;
+      bottom: 10px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s infinite ease-in;
+      opacity: 0.8;
+    }
+
+    .petal {
+      position: absolute;
+      top: -50px;
+      font-size: 18px;
+      animation: fall 7s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-800px) scale(1.4); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="mainCard">
+    <div style="display:flex;gap:10px;justify-content:center;margin-bottom:15px;">
+      <img src="photo_2026-02-08_07-53-56.jpg" alt="Love photo" style="width:90px;height:90px;object-fit:cover;border-radius:50%;border:2px solid #fff;">
+      <img src="photo_2026-02-08_07-53-42.jpg" alt="Love photo" style="width:90px;height:90px;object-fit:cover;border-radius:50%;border:2px solid #fff;">
+    </div>
+    <h1>Hey Misbah 💕</h1>
+    <p class="type">Misbah, will you be my Valentine? 🌹</p>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="goYes()">Yes 💖</button>
+      <button id="noBtn" onmouseover="moveNo()" onclick="noClicked()">No 💔</button>
+    </div>
+  </div>
+
+  <script>
+    let noTexts = [
+      "Are you sure? 🥺",
+      "Think again 💭",
+      "Pleaseee 😭",
+      "One more chance ❤️",
+      "Don't break my heart 💔",
+      "Last warning 😶",
+      "Okay now click YES 😘"
+    ];
+    let noIndex = 0;
+
+    function moveNo() {
+      const noBtn = document.getElementById('noBtn');
+      const card = document.querySelector('.card');
+      const maxX = card.clientWidth - noBtn.offsetWidth;
+      const maxY = card.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    }
+
+    function noClicked() {
+      const noBtn = document.getElementById('noBtn');
+      noBtn.innerText = noTexts[noIndex % noTexts.length];
+      noIndex++;
+      moveNo();
+    }
+
+    function goYes() {
+      document.body.innerHTML = `
+        <iframe width="0" height="0" src="https://www.youtube.com/embed/7S9A0JQyPzA?autoplay=1&loop=1&playlist=7S9A0JQyPzA" frameborder="0" allow="autoplay"></iframe>
+        <div class="card">
+          <h1>Thank You, Misbah 💖</h1>
+          <p>For this beautiful blessing 🌸<br/>You just made my heart the happiest ❤️<br/><br/>I’m so lucky to have you, Love 🥰</p>
+          <p style="margin-top:20px;font-size:1rem;">Happy Propose Day 💍</p>
+          <p style="margin-top:15px;font-size:1.05rem;line-height:1.6;">
+            Jaan, you are my calm in chaos, my smile on difficult days, and my favorite thought every night.
+            Loving you feels natural, effortless, and endlessly beautiful. I promise to cherish you, respect you,
+            and choose you — today and always. 🌹
+          </p>
+          <p style="margin-top:15px;font-style:italic;">— Yours, Aryan ❤️</p>
+        </div>
+      `;
+    }
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.bottom = '0px';
+      heart.style.fontSize = (16 + Math.random() * 20) + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.innerHTML = '🌹';
+      petal.style.left = Math.random() * window.innerWidth + 'px';
+      petal.style.fontSize = (14 + Math.random() * 16) + 'px';
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 7000);
+    }
+
+    setInterval(createPetal, 600);
+  </script>
+
+</body>
+</html>
